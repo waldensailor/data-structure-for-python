@@ -86,14 +86,79 @@ class TreeSearch(object):
                 current_node.rchrild = Node(elem)
             
     #删除节点
-    def delete(elem):
+    def delete(self, elem):
         pass
         
-    #
+    #层次遍历
+    def leave(self):
+        que = []
+        #如果是空树，则跳出
+        if self.root:
+            que.append(self.root)
+        else:
+            print("此树为空")
+            return
+        while que:
+            if que[0].lchrild:
+                que.append(que[0].lchrild)
+            if que[0].rchrild:
+                que.append(que[0].rchrild)
+            print(que[0].elem)
+            del que[0]
+            
+     #按照每层打印的层次遍历
+    def print_leave(self):
+        que = []     
+        hh = []#换行记发的list
+        #如果是空树，则跳出
+        if self.root:
+            que.append(self.root)
+            dq_num = 1
+            xiacen_num = 0
+        else:
+            print("此树为空")
+            return
+        while que:
+            if que[0].lchrild:
+                que.append(que[0].lchrild)
+                xiacen_num += 1
+            if que[0].rchrild:
+                que.append(que[0].rchrild)
+                xiacen_num += 1    
+            print(que[0].elem, end=" ")
+            dq_num -= 1
+            if dq_num == 0:
+                dq_num = xiacen_num
+                xiacen_num = 0
+                print()
+            del que[0]
+            
+    #递归层次遍历
+    def digu_leave(self):
+        que = []
+        if self.root:
+            que.append(self.root)
+        else:
+            print("此树为空")
+            return
+        def di_leave(que):
+            print(que[0].elem)
+            if que[0].lchrild:
+                que.append(que[0].lchrild)
+            if que[0].rchrild:
+                que.append(que[0].rchrild)
+            que.pop(0)
+            if que:#如果队列为不为空则递归           
+                di_leave(que)
+        di_leave(que)
+        
 if __name__ == '__main__':
     sdtree = TreeSearch()
-    list = [3, 5, 12, 54, 2, 1, 54, 678, 2, 54]
+    list = [9, 3, 7, 28,6, 5, 12, 54, 2, 1, 54, 678, 2, 54]
     team = ['thunder', 'gs', 'rockets', 'suprs', 'lakers', '快船', 'rop']
     for i in list:
         sdtree.append_digu(i)
-    sdtree.bianli()
+    sdtree.leave()
+    #sdtree.digu_leave()
+    print("按照层遍历，按照行输出")
+    sdtree.print_leave()

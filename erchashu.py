@@ -12,10 +12,12 @@ class Node(object):
 
 """
 树类
+生c成一颗完全二叉树
 """
 class Tree(object):
     def __init__(self):
         self.root = Node()
+        '''记录二叉树的中序序列，当一个子树的左右子树都添加时候，该节点会在该链表中删除'''
         self.myQuene = []
         
     def add(self, elem):
@@ -32,3 +34,6 @@ class Tree(object):
                  treeNode.rchild == node
                  self.nyQuene.append(treeNode.rchild)
                  self.myQuene.pop(0) #如果存在右子树就将该节点丢弃
+    
+    '''
+    '''

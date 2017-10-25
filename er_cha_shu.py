@@ -20,7 +20,12 @@ class Tree(object):
     def __init__(self):
         self.root = Node()
         self.myQueue = []
-
+    
+    #判断是否为空
+    def isempty(self):
+        return self.root == None
+    
+    #添加元素
     def add(self, elem):
         """为树添加节点"""
         node = Node(elem)
